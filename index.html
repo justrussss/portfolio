@@ -2,214 +2,186 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
+    <meta name="color-scheme" content="light dark" />
+    <title>russ — aspiring data analyst</title>
+    <meta name="description" content="Portfolio of Russ, a Computer Science student and aspiring data analyst." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
+    <script>
+      // Apply saved theme (light | dark | system) before paint
+      try {
+        var pref = localStorage.getItem("portfolio-theme") || "system";
+        var dark = pref === "dark" || (pref === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+        document.documentElement.dataset.pref = pref;
+      } catch (e) {}
+    </script>
   </head>
   <body>
-    <nav id="desktop-nav">
-      <div class="logo">Russ.Dev</div>
-      <div>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+    <!-- Mobile top bar -->
+    <header class="topbar">
+      <a href="#top" class="logo">russ</a>
+      <button class="menu-btn mono" id="menu-btn" aria-expanded="false" aria-controls="overlay">menu</button>
+    </header>
 
-    <nav id="hamburger-nav">
-      <div class="logo">Russ.Dev</div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-        </div>
-      </div>
-    </nav>
+    <div class="overlay" id="overlay" hidden>
+      <nav aria-label="Mobile">
+        <a href="#about">01 — about</a>
+        <a href="#experience">02 — experience</a>
+        <a href="#projects">03 — projects</a>
+        <a href="#contact">04 — contact</a>
+      </nav>
+      <div class="theme-switch" data-theme-switch></div>
+    </div>
 
-    <!-- PROFILE SECTION -->
-    <section id="profile">
-      <div class="section__pic-container">
-        <img src="./assets/pic.jpg" alt="Russ.Dev profile picture" />
+    <!-- Desktop sidebar -->
+    <aside class="sidebar">
+      <a href="#top" class="logo">russ</a>
+      <nav class="side-nav" aria-label="Primary">
+        <a href="#about" data-link>about</a>
+        <a href="#experience" data-link>experience</a>
+        <a href="#projects" data-link>projects</a>
+        <a href="#contact" data-link>contact</a>
+      </nav>
+      <div class="side-group">
+        <a class="mono link" href="https://github.com/justrussss" target="_blank" rel="noopener">github ↗</a>
+        <a class="mono link" href="https://www.linkedin.com/in/russ-gallanosa" target="_blank" rel="noopener">linkedin ↗</a>
       </div>
-      <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">Russ</h1>
-        <p class="section__text__p2">Aspiring Data Analyst</p>
-        <div class="btn-container"></div>
-        <div id="socials-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="My LinkedIn profile"
-            class="icon"
-            onclick="location.href='https://linkedin.com/'"
-          />
-          <img
-            src="./assets/github.png"
-            alt="My Github profile"
-            class="icon"
-            onclick="location.href='https://github.com/'"
-          />
-        </div>
+      <div class="side-group">
+        <div class="theme-switch" data-theme-switch></div>
       </div>
-    </section>
+    </aside>
 
-    <!-- ABOUT SECTION -->
-    <section id="about">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
-      <div class="section-container">
-        <div class="section__pic-container">
-          <img
-            src="./assets/pic.jpg"
-            alt="Profile picture"
-            class="about-pic"
-          />
+    <main id="top" class="page">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="halftone halftone--hero" aria-hidden="true"></div>
+        <div class="fade" style="--d: 50ms">
+          <span class="label"><i class="pulse"></i> open to internships</span>
         </div>
-        <div class="about-details-container">
-          <div class="about-containers">
-            <div class="details-container">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Experience</h3>
-              <p>3rd Year Student taking Bachelor of Science in Computer Science</p>
-            </div>
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>Technological University of the Phillipines</p>
-            </div>
+        <h1 class="display fade" style="--d: 120ms">russ</h1>
+        <p class="sub fade" style="--d: 190ms">Aspiring data analyst. Computer Science student turning data and code into clear, useful things.</p>
+        <div class="hero-photo fade" style="--d: 260ms">
+          <img src="./assets/prof.jpg" alt="Portrait of Russ" />
+          <div class="halftone halftone--photo" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="section">
+        <h2 class="sec-label fade" style="--d: 330ms">01 — about</h2>
+        <dl class="facts">
+          <div>
+            <dt class="label">status</dt>
+            <dd>3rd year, BS Computer Science</dd>
           </div>
-          <div class="text-container">
-            <p>
-              I am a third-year Computer Science student at the Technological University of the Philippines, driven by a deep passion for data, technology, and innovation. 
-              My academic journey has equipped me with a strong foundation in programming, data management, and analytical thinking. 
-              I aspire to become a data analyst who transforms raw information into meaningful insights that empower smarter decisions and real-world impact. 
-              Beyond academics, I continuously seek opportunities to grow—joining hackathons, design challenges, and collaborative projects that sharpen both my technical skills and creative problem-solving abilities. 
-              I am committed to lifelong learning and dedicated to using technology as a tool for positive change and data-driven solutions.
-            </p>
+          <div>
+            <dt class="label">school</dt>
+            <dd>Technological University of the Philippines</dd>
           </div>
-        </div>
-      </div>
-      <img
-        onclick="location.href='./#experience'"
-      />
-    </section>
+        </dl>
 
-<!-- EXPERIENCE SECTION -->
-<section id="experience">
-  <p class="section__text__p1">Explore My</p>
-  <h1 class="title">Experience</h1>
-
-  <div class="hackathon-container">
-    <!-- Hackathon 1 -->
-    <div class="hackathon-card">
-      <div class="hackathon-image">
-        <img src="./assets/ton.png" alt="DataDive Hackathon Certificate" />
-      </div>
-      <div class="hackathon-details">
-        <h2>GDGOC TUP ATHENS</h2>
-        <p class="hackathon-date">November 2024</p>
-        <p>
-          Participated in the TON Hackers League Hackathon Manila Bootcamp, a 3-day coding challenge focused on blockchain and web development.
-          Developed a Telegram-based application using the TON blockchain, designing a responsive front-end and collaborating with a 3-member team to deliver a functional full-stack solution under tight deadlines.
-        </p>
-      </div>
-    </div>
-
-    <!-- Hackathon 2 -->
-    <div class="hackathon-card">
-      <div class="hackathon-image">
-        <img src="./assets/dev.jpg" alt="DataDive Hackathon Certificate" />
-      </div>
-      <div class="hackathon-details">
-        <h2>#HYPER< A >CTIVEMINDS{}</h2>
-        <p class="hackathon-date">March 2025</p>
-        <p>
-          Worked on a design project addressing the 12 Problems of the World as part of a 5-member team.
-          Led the front-end design using Figma, creating user-centered interfaces and visual prototypes to communicate impactful solutions.
-        </p>
-      </div>
-    </div>
-    </div>
-  </div>
-
-  <img
-    onclick="location.href='./#projects'"
-  />
-</section>
-
-    <!-- PROJECTS SECTION -->
-    <section id="projects">
-      <p class="section__text__p1">Browse My Recent</p>
-      <h1 class="title">Projects</h1>
-      <div class="experience-details-container placeholder">
-        <p>Coming soon...</p>
-      </div>
-      <img
-        onclick="location.href='./#contact'"
-      />
-    </section>
-
-  <!-- CONTACT SECTION -->
-<section id="contact">
-  <p class="section__text__p1">Get in Touch</p>
-  <h1 class="title">Contact Me</h1>
-
-  <div class="contact-form-container">
-    <form id="contact-form">
-      <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="user_name" placeholder="Enter your name" required />
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="user_email" placeholder="Enter your email" required />
-      </div>
-
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
-      </div>
-
-      <button type="submit" class="btn btn-color-1">Send Message</button>
-    </form>
-  </div>
-</section>
-
-
-    <!-- FOOTER -->
-    <footer>
-      <nav>
-        <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+        <div class="stack-block">
+          <h3 class="label">tech stack</h3>
+          <ul class="tags">
+            <li>C</li><li>C++</li><li>Python</li><li>Java</li>
+            <li>JavaScript</li><li>React + Vite</li><li>HTML</li><li>CSS</li>
           </ul>
         </div>
-      </nav>
-      <p>Copyright &#1483; 2025 Russ.Dev. All Rights Reserved.</p>
-    </footer>
+        <div class="stack-block">
+          <h3 class="label">toolbox</h3>
+          <ul class="tags">
+            <li>Figma</li><li>Vercel</li><li>VS Code</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="section">
+        <h2 class="sec-label">02 — experience</h2>
+
+        <article class="card">
+          <div class="thumb"><img src="./assets/ton.png" alt="TON Hackers League Hackathon" loading="lazy" /></div>
+          <div class="card-body">
+            <p class="label">november 2024</p>
+            <h3>GDGOC TUP ATHENS</h3>
+            <p class="muted">
+              Participated in the TON Hackers League Hackathon Manila Bootcamp, a 3-day coding challenge focused on blockchain and web development.
+              Built a Telegram-based application on the TON blockchain, designing a responsive front end and collaborating with a 3-member team to deliver a functional full-stack solution under tight deadlines.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb"><img src="./assets/dev.jpg" alt="Hyperactive Minds event" loading="lazy" /></div>
+          <div class="card-body">
+            <p class="label">march 2025</p>
+            <h3>#HYPER&lt;A&gt;CTIVEMINDS{}</h3>
+            <p class="muted">
+              Worked on a design project addressing the 12 Problems of the World as part of a 5-member team.
+              Led the front-end design in Figma, creating user-centered interfaces and visual prototypes to communicate impactful solutions.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="section">
+        <h2 class="sec-label">03 — projects</h2>
+        <article class="card card--text">
+          <div class="card-body">
+            <p class="label">team project · ui/ux design &amp; front end</p>
+            <h3>NoteSight</h3>
+            <p class="muted">
+              A web app that turns sheet music into something you can read, hear and practice with. Upload a score, view it in the browser, and play it back with adjustable tempo and instant audio.
+              I designed the UI/UX and built the front end, including the login flow, library and favorites views, and the upload experience.
+            </p>
+            <ul class="tags">
+              <li>React</li><li>Vite</li><li>Firebase</li><li>Figma</li>
+            </ul>
+            <p class="card-links">
+              <a class="mono link" href="https://notesight.vercel.app/" target="_blank" rel="noopener">live demo ↗</a>
+              <a class="mono link" href="https://github.com/ey2ron/notesight" target="_blank" rel="noopener">source ↗</a>
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section">
+        <h2 class="sec-label">04 — contact</h2>
+        <p class="muted contact-lead">Have a project, role, or just want to say hi? My inbox is open.</p>
+        <form id="contact-form" class="form">
+          <label>
+            <span class="label">name</span>
+            <input type="text" name="user_name" placeholder="your name" required />
+          </label>
+          <label>
+            <span class="label">email</span>
+            <input type="email" name="user_email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            <span class="label">message</span>
+            <textarea name="message" rows="5" placeholder="write your message…" required></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="btn">send message</button>
+            <p class="mono status" id="form-status" role="status"></p>
+          </div>
+        </form>
+      </section>
+
+      <footer class="footer">
+        <span class="mono">&copy; 2025 russ</span>
+        <a class="mono link" href="#top">back to top ↑</a>
+      </footer>
+    </main>
 
     <script src="script.js"></script>
   </body>
